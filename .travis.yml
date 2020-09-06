@@ -5,7 +5,7 @@ services:
 - docker
 script:
 #- travis_wait 40 docker run --cap-add=SYS_ADMIN davidva/unibuild /bin/sh /urpms -g UnitedRPMs/spotify -s spotify.spec -t fedora-25-x86_64
-- docker run -v $(pwd):/root/enjoy --cap-add=SYS_ADMIN --security-opt seccomp:unconfined davidva/unibuild-33 /bin/sh -c "rm -f urpms && wget -c https://raw.githubusercontent.com/kuboosoft/united-build/master/urpms && chmod a+x urpms && /urpms -g UnitedRPMs/obs-ndi -s obs-ndi.spec -r true -d 'dist .fc33' -u true"
+- docker run -v $(pwd):/root/enjoy --cap-add=SYS_ADMIN --security-opt seccomp:unconfined davidva/unibuild-34 /bin/sh -c "rm -f urpms && wget -c https://raw.githubusercontent.com/kuboosoft/united-build/master/urpms && chmod a+x urpms && /urpms -g UnitedRPMs/obs-ndi -s obs-ndi.spec -r true -d 'dist .fc34' -u true"
 notifications:
   webhooks:
     urls:

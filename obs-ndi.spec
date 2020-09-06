@@ -21,7 +21,7 @@
 
 Name:           obs-ndi
 Version:        4.9.1
-Release:        1%{dist}
+Release:        2%{dist}
 Summary:        Network A/V in OBS Studio with NewTek's NDI technology
 License:        GPLv2
 Group:		Applications/Multimedia
@@ -41,16 +41,17 @@ Network A/V in OBS Studio with NewTek's NDI technology.
 
 
 %prep
-%autosetup 
+%autosetup -p1
 
 
 %build
 mkdir -p %{_target_platform}; pushd %{_target_platform}
-cmake \
+%cmake \
 	-DCMAKE_INSTALL_PREFIX="/usr" \
         -DCMAKE_INSTALL_LIBDIR=%{_libdir} \
 	-DOBS_MULTIARCH_SUFFIX="%(echo %{_lib} | sed -e 's/lib//')" \
 	-DLIBOBS_INCLUDE_DIR=%{_includedir}/obs \
+	-DLIBOBS_LIB=%{_libdir} \
 	-DCMAKE_VERBOSE_MAKEFILE:BOOL=OFF \
 	-DBUILD_TESTING=OFF -Wno-dev ..
 
@@ -69,6 +70,9 @@ pushd %{_target_platform}
 
 
 %changelog
+
+* Sat Sep 05 2020 David Va <davidva AT tuta DOT io> 4.9.1-2
+- Multilib changes
 
 * Thu Aug 27 2020 David Va <davidva AT tuta DOT io> 4.9.1-1
 - Initial build
