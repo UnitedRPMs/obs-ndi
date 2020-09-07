@@ -1,0 +1,11 @@
+diff -ruN orig/src/obs-ndi.cpp new/src/obs-ndi.cpp
+--- orig/src/obs-ndi.cpp	2020-05-14 04:29:22.000000000 -0600
++++ new/src/obs-ndi.cpp	2020-09-06 22:54:13.909801514 -0600
+@@ -200,6 +200,7 @@
+ 	locations << QString(qgetenv(NDILIB_REDIST_FOLDER));
+ #if defined(__linux__) || defined(__APPLE__)
+ 	locations << "/usr/lib";
++	locations << "/usr/lib64";
+ 	locations << "/usr/local/lib";
+ #endif
+ 

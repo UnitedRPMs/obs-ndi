@@ -28,13 +28,14 @@ Group:		Applications/Multimedia
 URL:            https://github.com/Palakis/obs-ndi
 
 Source0:	https://github.com/Palakis/obs-ndi/archive/%{version}.tar.gz
+Patch:		ndi-sdk_path.patch
 BuildRequires:  cmake
 BuildRequires:  cmake(Qt5Core)
 BuildRequires:	obs-studio-devel >= 26.0.0
 	
 BuildRequires:  gcc-c++
 BuildRequires:  cmake
-Requires:	libndi
+Requires:	libndi-sdk
 
 %description
 Network A/V in OBS Studio with NewTek's NDI technology.
@@ -72,6 +73,7 @@ pushd %{_target_platform}
 %changelog
 
 * Sat Sep 05 2020 David Va <davidva AT tuta DOT io> 4.9.1-2
+- Requires libndi-sdk
 - Multilib changes
 
 * Thu Aug 27 2020 David Va <davidva AT tuta DOT io> 4.9.1-1
