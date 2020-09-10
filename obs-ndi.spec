@@ -47,7 +47,7 @@ Network A/V in OBS Studio with NewTek's NDI technology.
 
 %build
 mkdir -p %{_target_platform}; pushd %{_target_platform}
-%cmake \
+cmake \
 	-DCMAKE_INSTALL_PREFIX="/usr" \
         -DCMAKE_INSTALL_LIBDIR=%{_libdir} \
 	-DOBS_MULTIARCH_SUFFIX="%(echo %{_lib} | sed -e 's/lib//')" \
