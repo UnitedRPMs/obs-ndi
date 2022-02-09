@@ -1,7 +1,7 @@
 #
 # spec file for package obs-ndi
 #
-# Copyright (c) 2020 UnitedRPMs.
+# Copyright (c) 2022 UnitedRPMs.
 #
 # All modifications and additions to the file contributed by third parties
 # remain the property of their copyright owners, unless otherwise agreed
@@ -19,15 +19,20 @@
 # 
 #define _legacy_common_support 1
 
+
+%global commit0 e979ee61f102fc1ac486d3a5b33c8dd921033396
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global gver .git%{shortcommit0}
+
 Name:           obs-ndi
 Version:        4.9.1
-Release:        2%{dist}
+Release:        3%{dist}
 Summary:        Network A/V in OBS Studio with NewTek's NDI technology
 License:        GPLv2
 Group:		Applications/Multimedia
 URL:            https://github.com/Palakis/obs-ndi
 
-Source0:	https://github.com/Palakis/obs-ndi/archive/%{version}.tar.gz
+Source0:	https://github.com/Palakis/obs-ndi/archive/%{commit0}.tar.gz#/%{name}-%{shortcommit0}.tar.gz
 Patch:		ndi-sdk_path.patch
 BuildRequires:  cmake
 BuildRequires:  cmake(Qt5Core)
@@ -42,7 +47,7 @@ Network A/V in OBS Studio with NewTek's NDI technology.
 
 
 %prep
-%autosetup -p1
+%autosetup -n %{name}-%{commit0} -p1 
 
 
 %build
@@ -71,6 +76,10 @@ pushd %{_target_platform}
 
 
 %changelog
+
+* Tue Feb 01 2022 David Va <davidva AT tuta DOT io> 4.9.1-3
+- Rebuilt for obs-studio
+- Updated to current commit
 
 * Sat Sep 05 2020 David Va <davidva AT tuta DOT io> 4.9.1-2
 - Requires libndi-sdk
